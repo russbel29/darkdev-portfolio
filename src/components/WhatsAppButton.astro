@@ -1,0 +1,37 @@
+---
+interface Props {
+  waLink: string;
+}
+
+const { waLink } = Astro.props;
+---
+
+<a
+  href={waLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group fixed bottom-8 right-8 z-[100] flex items-center"
+  aria-label="Enviar mensaje por WhatsApp"
+>
+  <!-- Tooltip -->
+  <span class="mr-3 bg-surface-container text-on-surface text-sm px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap shadow-lg">
+    ¡Escríbeme!
+  </span>
+
+  <!-- Button -->
+  <div class="relative">
+    <!-- Glow -->
+    <div class="absolute inset-0 bg-[#25D366] rounded-full blur-lg opacity-40 animate-pulse"></div>
+
+    <!-- Circle -->
+    <div class="relative w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300">
+      <!-- WhatsApp SVG -->
+      <svg viewBox="0 0 32 32" class="w-8 h-8 fill-white">
+        <path d="M16.004 0h-.008C7.174 0 .002 7.174.002 16c0 3.502 1.128 6.744 3.046 9.378L1.06 31.29l6.156-1.96A15.912 15.912 0 0 0 16.004 32C24.826 32 32 24.826 32 16S24.826 0 16.004 0zm9.31 22.606c-.388 1.092-1.938 1.998-3.156 2.264-.834.178-1.922.32-5.59-1.202-4.694-1.946-7.71-6.73-7.944-7.04-.226-.312-1.89-2.522-1.89-4.81 0-2.288 1.196-3.412 1.622-3.878.388-.424.91-.618 1.196-.618.148 0 .282.008.402.014.424.018.636.042.916.71.35.834 1.202 2.93 1.306 3.142.106.214.212.502.068.796-.136.302-.254.436-.468.686-.214.25-.44.444-.654.716-.196.24-.416.496-.178.934.238.436 1.058 1.748 2.272 2.832 1.562 1.394 2.878 1.828 3.29 2.03.32.156.702.13.948-.132.312-.336.698-.894 1.09-1.446.278-.394.63-.444.978-.302.35.136 2.222 1.048 2.602 1.238.38.192.632.286.726.444.092.16.092.906-.296 1.998z"/>
+      </svg>
+
+      <!-- Notification dot -->
+      <span class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-red-500 rounded-full border-2 border-surface"></span>
+    </div>
+  </div>
+</a>

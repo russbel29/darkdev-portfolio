@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+npm-debug.log*
+
+# Build output
+dist/
+.astro/
+.vercel/
+
+# Environment
+.env
+.env.production
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Internal tooling
+.atl/

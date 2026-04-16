@@ -1,0 +1,144 @@
+---
+interface Props {
+  waLink: string;
+}
+
+const { waLink } = Astro.props;
+---
+
+<section id="contacto" class="py-24 bg-surface-dim">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+      <!-- Left: Info -->
+      <div data-reveal>
+        <h2 class="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6">
+          ¿Listo para tener tu landing?
+        </h2>
+        <p class="text-on-surface-variant text-lg leading-relaxed mb-10">
+          Cuéntame tu proyecto. Respondo en menos de 24 horas.
+        </p>
+
+        <div class="space-y-6">
+          <!-- WhatsApp -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-primary">chat</span>
+            </div>
+            <div>
+              <p class="text-sm text-outline mb-0.5">WhatsApp</p>
+              <a href={waLink} target="_blank" rel="noopener noreferrer" class="text-on-surface hover:text-primary transition-colors">
+                +51 966 341 277
+              </a>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-primary">location_on</span>
+            </div>
+            <div>
+              <p class="text-sm text-outline mb-0.5">Ubicación</p>
+              <p class="text-on-surface">Lima, Perú</p>
+            </div>
+          </div>
+
+          <!-- Schedule -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-primary">schedule</span>
+            </div>
+            <div>
+              <p class="text-sm text-outline mb-0.5">Disponibilidad</p>
+              <p class="text-on-surface">Lun–Sáb, 9am–8pm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div data-reveal>
+        <form id="contact-form" class="glass-card p-8 md:p-10 rounded-2xl space-y-6">
+          <div>
+            <label for="name" class="block text-sm text-on-surface-variant mb-2">Nombre Completo</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full bg-surface-container border border-outline-variant/20 rounded-lg px-4 py-3 text-on-surface placeholder-outline text-sm focus:outline-none focus:border-primary-container transition-colors"
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm text-on-surface-variant mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full bg-surface-container border border-outline-variant/20 rounded-lg px-4 py-3 text-on-surface placeholder-outline text-sm focus:outline-none focus:border-primary-container transition-colors"
+              placeholder="tu@email.com"
+            />
+          </div>
+
+          <div>
+            <label for="business" class="block text-sm text-on-surface-variant mb-2">Tu Negocio / Proyecto</label>
+            <input
+              type="text"
+              id="business"
+              name="business"
+              class="w-full bg-surface-container border border-outline-variant/20 rounded-lg px-4 py-3 text-on-surface placeholder-outline text-sm focus:outline-none focus:border-primary-container transition-colors"
+              placeholder="Nombre de tu negocio"
+            />
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm text-on-surface-variant mb-2">Mensaje</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              required
+              class="w-full bg-surface-container border border-outline-variant/20 rounded-lg px-4 py-3 text-on-surface placeholder-outline text-sm focus:outline-none focus:border-primary-container transition-colors resize-none"
+              placeholder="Cuéntame sobre tu proyecto..."
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            id="submit-btn"
+            class="w-full bg-primary-container text-on-primary-container py-3 rounded-lg font-medium hover:brightness-110 transition-all text-sm"
+          >
+            Enviar mensaje
+          </button>
+
+          <div id="success-msg" class="hidden text-center text-green-400 text-sm py-3 animate-pulse">
+            ✓ Mensaje enviado. Te respondo en menos de 24 horas.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('success-msg');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (submitBtn) submitBtn.classList.add('hidden');
+    if (successMsg) {
+      successMsg.classList.remove('hidden');
+      successMsg.style.opacity = '0';
+      successMsg.style.transition = 'opacity 500ms ease';
+      requestAnimationFrame(() => {
+        successMsg.style.opacity = '1';
+      });
+    }
+    form.reset();
+  });
+</script>

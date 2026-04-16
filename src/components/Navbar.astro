@@ -1,0 +1,95 @@
+---
+interface Props {
+  brand: string;
+  waLink: string;
+}
+
+const { brand, waLink } = Astro.props;
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="#" class="text-xl font-heading font-bold text-on-surface">
+        {brand.slice(0, 4)}<span class="text-primary-container">{brand.slice(4)}</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8">
+        <a data-nav-link href="#proyectos" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Proyectos</a>
+        <a data-nav-link href="#proceso" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Proceso</a>
+        <a data-nav-link href="#precios" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Precios</a>
+        <a data-nav-link href="#sobre-mi" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Sobre mí</a>
+        <a data-nav-link href="#contacto" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Contacto</a>
+      </div>
+
+      <!-- CTA -->
+      <a
+        href={waLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden md:inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-5 py-2 rounded-lg text-sm font-medium hover:brightness-110 transition-all"
+      >
+        Contáctame
+      </a>
+
+      <!-- Mobile Hamburger -->
+      <button
+        id="menu-toggle"
+        class="md:hidden flex flex-col gap-1.5 p-2"
+        aria-label="Abrir menú"
+      >
+        <span class="block w-6 h-0.5 bg-on-surface transition-all duration-300" id="bar1"></span>
+        <span class="block w-6 h-0.5 bg-on-surface transition-all duration-300" id="bar2"></span>
+        <span class="block w-6 h-0.5 bg-on-surface transition-all duration-300" id="bar3"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-outline-variant/10">
+    <div class="px-4 py-4 flex flex-col gap-4">
+      <a data-nav-link href="#proyectos" class="text-on-surface-variant hover:text-primary transition-colors">Proyectos</a>
+      <a data-nav-link href="#proceso" class="text-on-surface-variant hover:text-primary transition-colors">Proceso</a>
+      <a data-nav-link href="#precios" class="text-on-surface-variant hover:text-primary transition-colors">Precios</a>
+      <a data-nav-link href="#sobre-mi" class="text-on-surface-variant hover:text-primary transition-colors">Sobre mí</a>
+      <a data-nav-link href="#contacto" class="text-on-surface-variant hover:text-primary transition-colors">Contacto</a>
+      <a
+        href={waLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-primary-container text-on-primary-container px-5 py-2 rounded-lg text-sm font-medium text-center hover:brightness-110 transition-all"
+      >
+        Contáctame
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const bar1 = document.getElementById('bar1');
+  const bar2 = document.getElementById('bar2');
+  const bar3 = document.getElementById('bar3');
+
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    bar1?.classList.toggle('rotate-45');
+    bar1?.classList.toggle('translate-y-2');
+    bar2?.classList.toggle('opacity-0');
+    bar3?.classList.toggle('-rotate-45');
+    bar3?.classList.toggle('-translate-y-2');
+  });
+
+  // Close menu on link click
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+      bar1?.classList.remove('rotate-45', 'translate-y-2');
+      bar2?.classList.remove('opacity-0');
+      bar3?.classList.remove('-rotate-45', '-translate-y-2');
+    });
+  });
+</script>

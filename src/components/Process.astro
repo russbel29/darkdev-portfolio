@@ -1,0 +1,75 @@
+---
+interface Props {
+  waLink: string;
+}
+
+const { waLink } = Astro.props;
+
+const steps = [
+  {
+    number: 1,
+    title: 'Brief',
+    icon: 'assignment',
+    description: 'Me cuentas tu negocio, objetivos y referencias. Una llamada de 30 min o un formulario.',
+  },
+  {
+    number: 2,
+    title: 'Diseño & Desarrollo',
+    icon: 'terminal',
+    description: 'Creo tu landing con IA y la refino con código. 3 rondas de revisión incluidas.',
+  },
+  {
+    number: 3,
+    title: 'Entrega',
+    icon: 'rocket_launch',
+    description: 'Landing publicada, dominio configurado y video Loom explicativo de cómo gestionar tu web.',
+  },
+];
+---
+
+<section id="proceso" class="py-24 bg-surface-low">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-4">Cómo trabajo</h2>
+      <p class="text-on-surface-variant text-lg">Simple, rápido y sin sorpresas.</p>
+    </div>
+
+    <!-- Steps -->
+    <div data-reveal class="grid md:grid-cols-3 gap-8 relative">
+      <!-- Connector line (desktop) -->
+      <div class="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-primary-container via-primary to-secondary"></div>
+
+      {steps.map((step) => (
+        <div class="relative flex flex-col items-center text-center">
+          <div class="w-24 h-24 rounded-2xl bg-surface-container border border-outline-variant/20 flex items-center justify-center mb-6 relative z-10">
+            <span class="material-symbols-outlined text-3xl text-primary">{step.icon}</span>
+          </div>
+          <h3 class="text-lg font-heading font-semibold text-on-surface mb-2">
+            {step.number}. {step.title}
+          </h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed max-w-xs">{step.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Express Banner -->
+    <div data-reveal class="mt-16 rounded-2xl bg-gradient-to-r from-primary-container/80 to-secondary/30 p-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <p class="text-lg font-heading font-semibold text-on-primary-container">
+          ¿Necesitas algo urgente?
+        </p>
+        <p class="text-on-primary-container/80 text-sm">
+          Paquete Express en 48 horas.
+        </p>
+      </div>
+      <a
+        href={waLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-surface text-on-surface px-6 py-3 rounded-lg font-medium hover:bg-surface-high transition-all text-sm whitespace-nowrap"
+      >
+        Consúltame
+      </a>
+    </div>
+  </div>
+</section>

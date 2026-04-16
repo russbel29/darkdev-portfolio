@@ -1,0 +1,115 @@
+---
+interface Props {
+  waLink: string;
+}
+
+const { waLink } = Astro.props;
+
+const plans = [
+  {
+    name: 'Básico',
+    price: '$150',
+    highlighted: false,
+    features: [
+      'Landing de 1 página',
+      'Diseño responsive',
+      'Formulario de contacto',
+      'Botón WhatsApp integrado',
+      'Entrega en 5 días',
+      '2 revisiones',
+    ],
+    cta: 'Seleccionar',
+  },
+  {
+    name: 'Estándar',
+    price: '$350',
+    highlighted: true,
+    features: [
+      'Todo lo del plan Básico',
+      'Hasta 5 secciones',
+      'SEO básico configurado',
+      'Google Analytics',
+      'Animaciones premium',
+      '3 revisiones',
+    ],
+    cta: 'Empezar ahora',
+  },
+  {
+    name: 'Premium',
+    price: '$650',
+    highlighted: false,
+    features: [
+      'Todo lo del Estándar',
+      'Landing multipágina',
+      'Integración con IA',
+      'Soporte 3 meses',
+      'Revisiones ilimitadas',
+    ],
+    cta: 'Seleccionar',
+  },
+];
+---
+
+<section id="precios" class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div data-reveal class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-4">Inversión</h2>
+      <p class="text-on-surface-variant text-lg">Sin letras pequeñas. Escoge tu plan.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 items-start">
+      {plans.map((plan) => (
+        <div
+          data-reveal
+          class:list={[
+            'relative glass-card rounded-2xl p-8 transition-all duration-500',
+            plan.highlighted
+              ? 'md:scale-105 border-2 border-primary-container neon-glow'
+              : 'border border-outline-variant/10',
+          ]}
+        >
+          {plan.highlighted && (
+            <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary-container text-on-primary-container text-xs font-semibold px-4 py-1 rounded-full">
+              Popular
+            </span>
+          )}
+
+          <h3 class="text-lg font-heading font-semibold text-on-surface-variant mb-2">{plan.name}</h3>
+          <p class="text-4xl font-heading font-bold text-on-surface mb-1">
+            {plan.price}
+            <span class="text-base font-normal text-outline"> USD</span>
+          </p>
+
+          <hr class="border-outline-variant/10 my-6" />
+
+          <ul class="space-y-3 mb-8">
+            {plan.features.map((feature) => (
+              <li class="flex items-start gap-3 text-sm text-on-surface-variant">
+                <span class="material-symbols-outlined text-secondary text-lg leading-5">check_circle</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href={waLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[
+              'block w-full text-center py-3 rounded-lg font-medium text-sm transition-all',
+              plan.highlighted
+                ? 'bg-primary-container text-on-primary-container hover:brightness-110'
+                : 'border border-outline-variant text-on-surface hover:border-primary hover:text-primary',
+            ]}
+          >
+            {plan.cta}
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <p data-reveal class="text-center text-sm text-outline mt-10">
+      * Precios en USD. 50% adelanto, 50% al entregar. Hosting y dominio no incluidos.
+    </p>
+  </div>
+</section>

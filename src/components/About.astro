@@ -1,0 +1,49 @@
+---
+const skills = ['HTML / CSS / JS', 'React & Tailwind', 'Inteligencia Artificial', 'UI/UX Design'];
+---
+
+<section id="sobre-mi" class="py-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+      <!-- Photo placeholder -->
+      <div data-reveal class="w-full md:w-5/12 shrink-0">
+        <div class="aspect-square rounded-2xl glass-card neon-glow flex flex-col items-center justify-center gap-4 border border-primary-container/20 grayscale hover:grayscale-0 transition-all duration-700">
+          <span class="text-8xl font-bold text-primary-container font-heading">RC</span>
+          <p class="text-xs text-outline uppercase tracking-widest">
+            [ Reemplazar con foto real ]
+          </p>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div data-reveal class="w-full md:w-7/12">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold tracking-tight mb-6">
+          Hola, soy Dark 👋
+        </h2>
+        <p class="text-on-surface-variant leading-relaxed mb-8 text-lg">
+          Soy Russbel, desarrollador web de Lima enfocado en una
+          sola cosa: crear landing pages que hacen crecer negocios
+          reales. Combino código con herramientas de IA para entregar
+          páginas rápidas, bonitas y que convierten, sin los tiempos
+          ni precios de una agencia.
+        </p>
+
+        <!-- Skill badges -->
+        <div class="flex flex-wrap gap-3 mb-8">
+          {skills.map((skill) => (
+            <span class="bg-surface-container border border-outline-variant/20 text-on-surface-variant text-sm px-4 py-2 rounded-lg">
+              {skill}
+            </span>
+          ))}
+        </div>
+
+        <a
+          href="#contacto"
+          class="text-primary hover:text-primary/80 font-medium transition-colors inline-flex items-center gap-1"
+        >
+          Hablemos de tu idea &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
